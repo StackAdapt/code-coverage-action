@@ -1,0 +1,28 @@
+name: "Code Coverage"
+description: "Github Action compares code coverage reports"
+branding:
+  icon: "check-circle"
+  color: "yellow"
+inputs:
+  lcov-file:
+    description: "Compare code coverage report"
+    required: true
+    default: "./coverage/lcov.info"
+  base-lcov-file:
+    description: "Base code coverage report to generate percentage diff"
+    required: true
+    default: "./coverage/lcov.info"
+  minimum-ratio:
+    description: "Minimum code coverage ratio that would to be considered as a difference between based and head commits"
+    required: false
+  send-summary-comment:
+    description: "Send Github Pull request comment with code coverage summary"
+    required: false
+outputs:
+  percentage:
+    description: "Total Percentage coverage"
+  diff:
+    description: "Percantage difference between head branch"
+runs:
+  using: "node12"
+  main: "dist/index.js"
